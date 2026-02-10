@@ -1,0 +1,47 @@
+/**
+ * Custom hook for handling global keyboard shortcuts
+ *
+ * Author: Om Pandey
+ * Used to centralize keyboard shortcut logic across the app
+ */
+
+import { useEffect } from "react";
+
+interface KeyboardShortcut {
+  key: string;
+  ctrl?: boolean;
+  shift?: boolean;
+  alt?: boolean;
+  callback: () => void;
+  description: string;
+}
+
+export function useKeyboardShortcuts(shortcuts: KeyboardShortcut[]) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      for (const shortcut of shortcuts) {
+        // Match modifier keys explicitly to avoid accidental triggers
+        const ctrlMatch = shortcut.ctrl
+          ? event.ctrlKey || event.metaKey
+          : !event.ctrlKey && !event.metaKey;
+
+        const shiftMatch = shortcut.shift ? event.shiftKey : !event.shiftKey;
+        const altMatch = shortcut.alt ? event.altKey : !event.altKey;
+
+        if (
+          event.key.toLowerCase() === shortcut.key.toLowerCase() &&
+          ctrlMatch &&
+          shiftMatch &&
+          altMatch
+        ) {
+          event.preventDefault();
+          shortcut.callback();
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [shortcuts]);
+}
