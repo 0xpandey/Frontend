@@ -50,25 +50,27 @@ npm install
 npm run dev
 ```
 📂 Project Structure (Simplified)
+```text
 src/
-├── App.tsx
-├── types/
-│ └── index.ts
-├── store/
-│ └── sheetStore.ts
-├── services/
-│ └── mockApi.ts
-├── hooks/
-│ └── useKeyboardShortcuts.ts
-├── components/
-│ ├── TopicCard.tsx
-│ ├── SubTopicSection.tsx
-│ ├── QuestionItem.tsx
-│ ├── dialogs/
-│ ├── dnd/
-│ └── ui/
-└── styles/
-└── globals.css
+ ├── App.tsx
+ ├── types/
+ │   └── index.ts
+ ├── store/
+ │   └── sheetStore.ts
+ ├── services/
+ │   └── mockApi.ts
+ ├── hooks/
+ │   └── useKeyboardShortcuts.ts
+ ├── components/
+ │   ├── TopicCard.tsx
+ │   ├── SubTopicSection.tsx
+ │   ├── QuestionItem.tsx
+ │   ├── dialogs/
+ │   ├── dnd/
+ │   └── ui/
+ └── styles/
+     └── globals.css
+```
 
 ###🔮 Possible Improvements
 
